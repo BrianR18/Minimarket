@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import Exceptions.*;
 
@@ -14,20 +13,30 @@ public class EntryManager {
 		people = new ArrayList<Person>();
 	}//End constructor
 	
-	@SuppressWarnings("deprecation")
-	public void registerEntry(String idType,int idNumber) throws IncorrectIdNumberException, InvalidIdTypeException{
-		tryEntryAmount++;
-		Date date = new Date();
-		if( (idNumber%100)%2 == 0 && date.getDay()%2!=0){
+	public boolean registerEntry(String idType,int idNumber,int day) throws IncorrectIdNumberException, InvalidIdTypeException{
+		increaseTryEntryAmount();
+		boolean registered = false;
+		if( ((idNumber%100)/10)%2 == 0 && day%2!=0){
 			throw new IncorrectIdNumberException(idNumber);
-		}else if((idNumber%100)%2 != 0 && date.getDay()%2==0){
+		}else if(((idNumber%100)/10)%2 != 0 && day%2==0){
 			throw new IncorrectIdNumberException(idNumber);
-		}else if(idType.equalsIgnoreCase("TI")){
+		}else if(idType.equalsIgnoreCase("ti")){
 			throw new InvalidIdTypeException(idType);
-		}else
+		}else{
 			people.add(new Person(idType,idNumber));
+			registered = true;
+		}//End else
+		return registered;
 	}//End registerEntry
+	private void increaseTryEntryAmount(){
+		++tryEntryAmount;
+	}//End increaseTryEntryAmount
 	public int getTryEntryAmount(){
 		return tryEntryAmount;
 	}//End getTryEntryAmount
+	public boolean validateId(String id){
+		boolean exist = false;
+		
+		return exist;
+	}
 }//End EntryManager

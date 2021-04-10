@@ -8,7 +8,7 @@ public class InvalidIdTypeException extends Exception {
 		super("You must be of legal age to enter");
 		this.incorrectIdType =  incorrectIdType;
 	}//End IncorrectIdNumberException
-	public String getIdNumber(){
+	public String getIdType(){
 		return incorrectIdType;
 	}//End getIdNumber
 }
