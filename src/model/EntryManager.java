@@ -36,7 +36,12 @@ public class EntryManager {
 	}//End getTryEntryAmount
 	public boolean validateId(String id){
 		boolean exist = false;
-		
+		Id[] ids = Id.values();
+		for(Id i:ids){
+			String sId = i.toString();
+			if(sId.equalsIgnoreCase(id))
+				exist = true;
+		}//End for each
 		return exist;
-	}
+	}//End validateId
 }//End EntryManager
