@@ -1,7 +1,6 @@
 package model;
 
 public class Person {
-	//private String idType;
 	private int idNumber;
 	private Id idType;
 	public Person(){
